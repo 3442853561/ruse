@@ -9,9 +9,10 @@ use read::parse::error::Result;
 /// Parse an input string, returning a Ruse expression that can be evaluated.
 pub trait Parse {
     fn parse(&self) -> Result;
+}
 
 impl Parse for Vec<Token> {
     fn parse(&self) -> Result {
-
+		/// TODO
     }
 }
