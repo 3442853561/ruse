@@ -1,7 +1,8 @@
 //! Types for handling errors in reading.
 
-use read::{lex, parse};
-use read::parse::expr::Expr;
+use lex;
+use parse;
+use parse::expr::Expr;
 use std::error;
 use std::fmt;
 use std::result;

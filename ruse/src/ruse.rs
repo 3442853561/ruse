@@ -1,4 +1,5 @@
 extern crate ruse;
+
 use ruse::Engine;
 
 fn main() {

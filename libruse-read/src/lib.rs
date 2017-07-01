@@ -1,12 +1,12 @@
 //! Read a Ruse program into a data structure which may be evaluated.
 
-pub mod error;
 pub mod lex;
 pub mod parse;
+pub mod error;
 
-use read::error::Result;
-use read::lex::Lex;
-use read::parse::Parse;
+use error::Result;
+use lex::Lex;
+use parse::Parse;
 
 /// Read a string representing a Ruse program into a syntax tree representation
 /// of that program.

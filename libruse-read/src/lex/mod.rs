@@ -2,11 +2,9 @@
 
 pub mod error;
 pub mod token;
-#[doc(hidden)]
-pub mod token_iterator;
 
-use read::lex::error::Result;
-use read::lex::token_iterator::StrTokenIterator;
+use lex::error::Result;
+use lex::token::StrTokenIterator;
 
 /// Lexes an input string to get a vector of tokens from it.
 pub trait Lex: AsRef<str> {
@@ -21,9 +19,9 @@ impl<T: AsRef<str>> Lex for T {}
 
 #[cfg(test)]
 mod tests {
-    use super::Lex;
-    use super::token::{Token, Location};
-    use super::error::Error;
+    use lex::Lex;
+    use lex::token::{Token, Location};
+    use lex::error::Error;
 
     #[test]
     fn lex_the_empty_program() {

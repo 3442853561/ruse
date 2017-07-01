@@ -11,10 +11,10 @@ license     = "MIT/Apache-2.0"
 
 [lib]
 name = "ruse"
-path = "src/ruse/lib.rs"
+path = "src/lib.rs"
 
-[[bin]]
-name = "ruse"
-path = "src/bin/ruse.rs"
-doc  = false
+[dependencies]
+read = { path = "../libruse-read" }
+eval = { path = "../libruse-eval" }
+print = { path = "../libruse-print" }
 
