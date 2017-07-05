@@ -10,9 +10,11 @@
 //! This is obviously an amibitious project, and I don't know when/if Ruse will
 //! reach this point. But it's sure fun to play with!
 
-extern crate read;
-extern crate eval;
-extern crate print;
+#![deny(missing_docs)]
+
+extern crate libruse_read as read;
+extern crate libruse_eval as eval;
+extern crate libruse_print as print;
 
 pub mod error;
 
@@ -22,6 +24,8 @@ use std::io::Read;
 
 use error::Result;
 use read::read;
+use eval::eval;
+use print::print;
 
 /// The entry point for running Ruse programs.
 ///
@@ -43,9 +47,10 @@ impl Engine {
 
     /// Run the engine on a specific program.
     pub fn run<S: AsRef<str>>(&mut self, s: S) -> Result {
-        let _expr = read(s)?;
-        // Yes, this is nonsense.
-        Ok(String::new())
+        let r = read(s).unwrap();
+        let e = eval(r).unwrap();
+        let p = print(e).unwrap();
+        Ok(p)
     }
 
     /// Run the engine on a program from a file.
@@ -55,7 +60,6 @@ impl Engine {
         let mut f = File::open(s).unwrap();
         let mut buffer = String::new();
         f.read_to_string(&mut buffer).expect("could not read file");
-
         self.run(buffer)
     }
 }
