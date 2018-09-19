@@ -6,31 +6,26 @@ use std::error;
 use std::fmt;
 use std::result;
 
-/// A convenience type for returning either an `Expr` or a parsing error.
-pub type Result = result::Result<Expr, Error>;
+pub type Result = result::Result<Expr, Response>;
 
-// TODO: Make these errors more useful.
-/// Indicates an error in parsing.
 #[derive(Debug, PartialEq)]
-pub enum Error {
-    /// Indicates that the program is empty.
+pub enum Response {
     EmptyProgram,
-    /// Invalid program.
     InvalidProgram,
+    EndOfProgram,
 }
 
-impl error::Error for Error {
-    /// A simple textual description of the error.
+impl error::Error for Response {
     fn description(&self) -> &str {
         match *self {
-            Error::EmptyProgram => "empty program",
-            Error::InvalidProgram => "invalid program",
+            Response::EmptyProgram => "empty program",
+            Response::InvalidProgram => "invalid program",
+            Response::EndOfProgram => "end of program",
         }
     }
 }
 
-impl fmt::Display for Error {
-    /// More detailed information about the error.
+impl fmt::Display for Response {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", (self as &error::Error).description())
     }
